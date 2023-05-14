@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <!--
+            React 渲染三步走:
+            1. 定义一个容器用于存放虚拟DOM
+            2. 创建虚拟DOM元素
+            3. 把虚拟DOM元素渲染到页面上
+        -->
+        <div id="root1"> <!-- 第一步 定义一个容器 -->
+        </div>
+        
+        <div id="root2">
+        </div>
+
+        
+        <script>
+            // 第二步 创建虚拟DOM元素 
+            // ES5 方法创建
+            var element = React.createElement('li', {}, 'hello') // 第一个参数 节点， 第二个 节点属性， 第三个 标签类容
+
+
+            // 第三步， 把虚拟DOM元素渲染到页面上
+            ReactDOM.render(element, document.getElementById('root1'))
+
+
+            // 如果有多层嵌套的关系
+            var li1 = React.createElement('li', null, '1111')
+            var li2 = React.createElement('li', {className: 'list-li'}, '2222')
+            var _ul = React.createElement('ul',  {id: 'list'}, li1, li2)
+
+            ReactDOM.render(_ul, document.getElementById('root2'))
+        </script>
+    </body>
+</html>
+
