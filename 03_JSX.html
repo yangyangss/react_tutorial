@@ -16,24 +16,16 @@
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     </head>
     <body>
-        <div id="root1"></div>
-        <script type="text/babel">
-            // ES6 方法创建， 必须使用type=text/babel
-            // babel 会把对应的JSX 转义为一个名为React.createElement() 函数调用
-            ReactDOM.render(
-                <ul>
-                    <li className='1111'>111</li>
-                    <li>222</li>
-                </ul>,
-                document.getElementById('root1')
-            )
-        </script>
 
         <!-- 下面就是一个JSX 的语法 -->
         <div id="root2"></div>
         <script type="text/babel">
+            let name = 'gouzi'
+            let flag = false
             let div = <div className='hello'>
                     <h1>hello react</h1>
+                    <p>{name}</p>
+                    <p>{flag ? 'hello': 'world'}</p>
                 </div>
             ReactDOM.render(div, document.getElementById('root2'))
         </script>
