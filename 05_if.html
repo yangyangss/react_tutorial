@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 下面就是一个JSX 的语法 -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            let flag = true
+            let login = <div><h1>login</h1></div>
+            let logout = <div><h1>logout</h1></div>
+            ReactDOM.render(
+                flag ? login : logout,
+                document.getElementById('root1')
+            )
+        </script>
+
+        <div id="root2"></div>
+        <script type="text/babel">
+
+            function App(){
+                let flag = false
+                let login = <div><h1>login</h1></div>
+                let logout = <div><h1>logout</h1></div>
+                return flag ? login : logout
+            }
+            ReactDOM.render(<App />, document.getElementById('root2'))
+        </script>
+        
+
+        <div id="root3"></div>
+        <script type="text/babel">                
+            function App(){
+                let state = true
+                if(state) {
+                    return <div><h1>this is login</h1></div>
+                } 
+                else{
+                    return <div><h1>this is logout</h1></div>
+                }
+                
+            }
+            ReactDOM.render(<App />, document.getElementById('root3'))
+        </script>
+
+    </body>
+</html>

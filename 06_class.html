@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 下面就是一个JSX 的语法 -->
+        <div id="root2"></div>
+
+
+        <script type="text/babel">
+            // 生成实例对象的传统方法是通过构造函数
+                function Person(x, y){
+                    this.x = x
+                    this.y = y
+                }
+                Person.prototype.add = function(){
+                    console.log(this.x + this.y)
+                }
+                let p = new Person(2, 3)
+
+            // 把上面的函数改成ES6的class
+            class Persons{
+                constructor(x, y){
+                    this.x = x
+                    this.y = y
+                }
+
+                add (){
+                    console.log(this.x + this.y)
+                }
+            }
+            let aa = new Persons(2, 3)
+        </script>
+    </body>
+</html>
