@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 下面就是一个JSX 的语法 -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            class Hello extends React.Component {
+                //为什么一定要用render 渲染
+                // 因为render 是生命周期里面非常基础的底层和方法
+                // 一定要用它来渲染
+                render(){
+                    return <h1>Hello 大狗</h1>
+                }
+            }
+
+            ReactDOM.render(
+                <Hello />,
+                document.getElementById('root1')
+            )
+        </script>
+    </body>
+</html>
