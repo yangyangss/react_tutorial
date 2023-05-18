@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 下面就是一个JSX 的语法 -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            class Hello extends React.Component {
+                constructor(){
+                    super()
+                    this.state = {
+                        name: 'hello',
+                        age: 12,
+                        job: 'DE',
+                    }
+                }
+                render(){
+                    return <div>
+                            <h1>我是一个有状态</h1>
+                            <p>name: {this.props.name}</p>
+                            <p>age:{this.props.age}</p>
+                            <p>job:{this.props.job}</p>
+
+                            <p>name2: {this.state.name}</p>
+                            <p>age:{this.state.age}</p>
+                            <p>job:{this.state.job}</p>
+                        </div>
+                }
+            }
+
+            ReactDOM.render(
+                <Hello name='大狗' age='18' job='SWE'/>,
+                document.getElementById('root1')
+            )
+        </script>
+    </body>
+</html>
