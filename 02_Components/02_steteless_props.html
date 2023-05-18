@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 下面就是一个JSX 的语法 -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            //函数式组件（无状态组件）
+            // function Hello(){
+            //     return <h1>hello world</h1>
+            // }
+            function Hello(props){
+                return <div>
+                        <h1>Shulin</h1>
+                        <p>age: {props.age}</p>
+                        <p>param1: {props.name}</p>
+                        <p>param2: {props.gender}</p>
+                    </div>
+            }
+            ReactDOM.render(
+                <Hello name='大狗' age='18' gender='male' />,
+                document.getElementById('root1')
+            )
+        </script>
+    </body>
+</html>
