@@ -24,7 +24,9 @@
         <script type="text/babel">
             class Hello extends React.Component {
                 constructor(){
-                    super()
+                    super() // 必须要调用super 方法，要不要报错 
+                    //因为子类必须在constructor构造器中调用super（）方法，从而得到父类的this 对象
+                    // super 是把属性传递给父级的构造对象
                     this.state = {
                         name: 'hello',
                         age: 12,
