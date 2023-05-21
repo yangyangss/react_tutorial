@@ -22,17 +22,28 @@
 
 
         <script type="text/babel">
-            /*
-            更多时候我们应该区别使用无状态的组件，因为如果是有状态组件的话, 他就会触发生命周期所对应的一些函数
-            一旦触发他的生命周期函数， 他就会影响当前项目的运行， 所以尽可能的情况都使用无状态函数
-            除非对当前的组件不是很清晰，是否要存储数据，或者已经确定要进行一些数据存储和修改， 这个时候选择有状态组件
-            */
             class Hello extends React.Component {
-                state = {
+                constructor(){
+                    super()
+                    this.state = {
                         name: 'hello',
                         age: 12,
                         job: 'DE',
+                        flag: true
+                    }
+                    this.updateAge = this.updateAge.bind(this)
+                    this.updateFlag = this.updateFlag.bind(this)
                 }
+
+                updateAge(){
+                    this.setState({age: this.state.age + 1})
+                }
+
+
+                updateFlag(){
+                    this.setState({flag: !this.state.flag })
+                }
+
                 render(){
                     return <div>
                             <h1>我是一个有状态</h1>
@@ -43,12 +54,16 @@
                             <p>name2: {this.state.name}</p>
                             <p>age:{this.state.age}</p>
                             <p>job:{this.state.job}</p>
+
+                            <button onClick={this.updateAge}>Up</button>
+                            <button onClick={this.updateFlag}>{this.state.flag ? 'YES': 'NO'}</button>
+
                         </div>
                 }
             }
 
             ReactDOM.render(
-                <Hello name='大狗' age='18' job='SWE'/>,
+                <Hello />,
                 document.getElementById('root1')
             )
         </script>

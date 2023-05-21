@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 下面就是一个JSX 的语法 -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            function Login(props){
+                return <button onClick={props.update}>Sub login</button>
+            }
+
+            function Logout(props){
+                return <button  onClick={props.update}>Sub logout</button>
+            }
+
+            class APP extends React.Component{
+                state = {
+                    isLogin: true
+                }
+
+                updateState = () => {
+                    this.setState({isLogin: !this.state.isLogin})
+                    console.log(this.state.isLogin)
+                }
+
+                render(){
+                    const {isLogin} = this.state
+
+                    // 根据状态不同的值去加载不同的组件, 如果是true， 就加载登陆组件，如果是false，加载logout
+                    return <div>
+                            <h1>this is a state component</h1>
+                            <p>*******</p>
+                            {isLogin ? <Login update={this.updateState} />: <Logout update={this.updateState} />} 
+                            <p>*******</p>
+                            <button onClick={this.updateState}>update state</button>
+                        </div>
+                }
+            }
+
+            ReactDOM.render(
+                <APP />,
+                document.getElementById('root1')
+            )
+        </script>
+    </body>
+</html>
