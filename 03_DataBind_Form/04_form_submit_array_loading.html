@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 
+            什么是 uncontrolled component ？
+            就是没有提前指定内容
+        -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            //下面是一个uncontrolled component，因为text box 没有指定value 内容
+            class Hello extends React.Component{
+                
+                state = {
+                    name: "jindu",
+                    gender: "1" ,
+                    selectOption: "B",
+                    select1: "",
+                    select2: 3
+                }
+                handSubmit = () => {
+                    alert(JSON.stringify(this.state))
+                    console.log(this.state)
+                }
+                handleInput = (e) => {
+                    this.setState({name: e.target.value})
+                }
+                hanleRadio = (e) => {
+                    this.setState({gender: e.target.value})
+                }         
+                handleSelect = (e) => {
+                    this.setState({selectOption: e.target.value})
+                }      
+                handleSelect1 = (e) => {
+                    this.setState({select1: e.target.value})
+                }        
+                handleSelect2 = (e) => {
+                    this.setState({select2: e.target.value})
+                }   
+                render() {
+                    let { name, gender, selectOption, select1, select2} = this.state
+                    let arr1 = ['E', 'F', 'G']
+                    let arr2 = [
+                        {id: 1, color: 'red'},
+                        {id: 2, color: 'blue'},
+                        {id: 3, color: 'green'}
+                    ]
+                    return <div>
+                            <form> 
+                                <label>姓名: <input type='text' defaultValue={name} onChange={this.handleInput} /></label>    
+                                
+                                 <label>性别: <input type='radio' name="gender" value="1" 
+                                    defaultChecked={gender === '1' ? true: false} 
+                                    onChange={this.hanleRadio} />Male
+                                    
+                                    <input type='radio' name="gender" value="2" 
+                                    defaultChecked={gender === '2' ? true: false} 
+                                    onChange={this.hanleRadio} />Female
+                                </label>    
+                                <lable>Hardcode
+                                    <select defaultValue={selectOption}  onChange={this.handleSelect}>
+                                        <option vlaue='A'>A</option>    
+                                        <option vlaue='B'>B</option>    
+                                        <option vlaue='C'>C</option>    
+                                        <option vlaue='D'>D</option>    
+                                    </select>
+                                </lable><br />
+                                <lable>Loop1
+                                    <select defaultValue={selectOption}  onChange={this.handleSelect1}>
+                                        /* 用循环写出每一项，这个一般情况， 如果比较复杂的数组， 比如数组中是对象 */
+                                        {
+                                            arr1.map((item, index) => 
+                                                <option key={index} vlaue={item}>{item}</option>    
+                                            )
+
+                                            /*
+                                            or
+
+                                             arr1.map((item, index) => {
+                                                return  <option key={index} vlaue={item}>{item}</option>    
+
+                                            }
+                                            )
+
+                                            */
+                                        }
+                                  
+                                    </select>
+                                </lable><br />
+                                <lable>Loop2(Object)
+                                    <select defaultValue={select2}  onChange={this.handleSelect2}>
+                                        /* 用循环写出每一项，这个一般情况， 如果比较复杂的数组， 比如数组中是对象 */
+                                        {
+                                            arr2.map(item => 
+                                                <option key={item.id} vlaue={item.id}>{item.color}</option>    
+                                            )
+
+                                            /*
+                                            or
+
+                                             arr1.map((item, index) => {
+                                                return  <option key={index} vlaue={item}>{item}</option>    
+
+                                            }
+                                            )
+
+                                            */
+                                        }
+                                  
+                                    </select>
+                                </lable>
+                                <hr />
+                                <button onClick={this.handSubmit}>Submit</button>
+                            </form>
+                        </div>
+                }               
+            }    
+
+            ReactDOM.render(
+                    <Hello />,
+                    document.getElementById('root1')
+                )        
+        </script>
+
+      
+    </body>
+</html>

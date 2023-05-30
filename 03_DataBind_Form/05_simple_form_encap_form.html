@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+
+        <!-- 
+            什么是 uncontrolled component ？
+            就是没有提前指定内容
+        -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            //下面是一个uncontrolled component，因为text box 没有指定value 内容
+            class Hello extends React.Component{
+                
+                state = {
+                    name: "",
+                    age: "" ,
+                    remark: ""
+                }
+                handSubmit = (e) => {
+                    //e.preventDefault()
+                    alert(JSON.stringify(this.state))
+                    console.log(this.state)
+                }             
+                handleChange = (e) => {
+                    let user_input = e.target.name
+                    console.log(user_input)
+                    this.setState({[user_input]: e.target.value}) // [user_input] - 用中括号相当于取值
+                }
+                render() {
+                    let { name, age, remark} = this.state
+                
+                    return <div>
+                            <form> 
+                                <label>姓名: <input type='text' name='name' defaultValue={name} onChange={this.handleChange} /></label>    
+                                <label>年龄: <input type='text' name='age' defaultValue={age} onChange={this.handleChange} /></label>    
+                                <label>remark: <input type='text' name='remark' defaultValue={remark} onChange={this.handleChange} /></label>    
+                                
+                                
+                                
+                                <button onClick={this.handSubmit}>Submit</button>
+                            </form>
+                        </div>
+                }               
+            }    
+
+            ReactDOM.render(
+                    <Hello />,
+                    document.getElementById('root1')
+                )        
+        </script>
+
+      
+    </body>
+</html>

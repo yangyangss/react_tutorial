@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale-1.0">
+        <title>Document</title>
+        
+        <!-- react 底层的核心库 -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+
+        <!-- react 操作DOM的核心库，类似于jquery -->
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <!-- 用于解析ES6语法 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <style>
+            .danger{color: red;}
+        </style>
+    </head>
+    <body>
+
+        <!-- 
+            什么是 uncontrolled component ？
+            就是没有提前指定内容
+        -->
+        <div id="root1"></div>
+
+
+        <script type="text/babel">
+            //下面是一个uncontrolled component，因为text box 没有指定value 内容
+            class Hello extends React.Component{
+                
+                state = {
+                    name: "",
+                    age: "" ,
+                    pwd: "",
+                    nameError: ""
+                }
+                handSubmit = (e) => {
+                    //e.preventDefault()
+                    alert(JSON.stringify(this.state))
+                    console.log(this.state)
+                }            
+                // Name validation
+                nameChange = (e) => {
+                    let rule = /^[a-zA-Z0-9_-]{4,10}$/
+                    let name_value = e.target.value
+                    console.log(name_value)
+                    let error = ''
+                    if (!name_value) {
+                        error = 'Please input the name!'
+                    } 
+                    else if(!rule.test(name_value)){
+                        error = 'Please input the valid name!(4-10)'
+                    }
+                    else{
+                        error = ''
+                    }
+                    this.setState({
+                        name: name_value,
+                        nameError: error
+                    }) 
+
+                }
+                //password validation
+                passwordChange = (e) => {
+                    let rule = /^[a-zA-Z0-9_-]{4,10}$/
+                    let pw_value = e.target.value
+                    console.log(pw_value)
+                    let error = ''
+                    if (!pw_value) {
+                        error = 'Please input the password!'
+                    } 
+                    // else if(!rule.test(pw_value)){
+                    //     error = 'Please input the valid name!(4-10)'
+                    // }
+                    else{
+                        error = ''
+                    }
+                    this.setState({
+                        pw: pw_value,
+                        pwError: error
+                    }) 
+
+                }
+                handleChange = (e) => {
+                    let user_input = e.target.name
+                    console.log(user_input)
+                    this.setState({[user_input]: e.target.value}) // [user_input] - 用中括号相当于取值
+                }
+                render() {
+                    let { name, age, pwd, nameError, pwError} = this.state
+                
+                    return <div>
+                            <form> 
+                                <label>姓名: <input type='text' name='name' defaultValue={name} onChange={this.nameChange} />
+                                    <span className='danger'>{nameError}</span>
+                                    </label> 
+                                <br />   
+                                <label>年龄: <input type='text' name='age' defaultValue={age} onChange={this.handleChange} /></label>    
+                                <br />
+                                <label>password: <input type='password' name='pwd' defaultValue={pwd} onChange={this.passwordChange} />
+                                    <span className='danger'>{pwError}</span>
+                                    </label>    
+                                
+                                
+                                
+                                <button onClick={this.handSubmit}>Submit</button>
+                            </form>
+                        </div>
+                }               
+            }    
+
+            ReactDOM.render(
+                    <Hello />,
+                    document.getElementById('root1')
+                )        
+        </script>
+
+      
+    </body>
+</html>
