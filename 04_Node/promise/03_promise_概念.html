@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-">
+</head>
+<body>
+    <h2>promise 应用</h2>
+   
+    <!-- promise 可分为宏任务和微任务(回调地狱嵌套是N层)， 
+    但是promise 只有2层。
+    比如下面的例子
+    在new promise 的时候， run(0)会立即执行, 然后后面的.then 依次执行
+    -->
+ 
+    <h3>3. promise 概念分析与基础应用</h3>
+    <script>
+        let isForget = false;
+        let getLv = new Promise((resolve, reject) => {
+            if (!isForget) {
+                let lv = {
+                    color : 'orange',
+                    price: '$99'
+                }
+                resolve(lv)
+            }
+            else{
+                let err = new Error('OT time')
+                reject(err)
+            }
+        })
+        let testFn = function (){
+            getLv.then((fulfilled) => {
+                console.log(fulfilled)
+            }).catch((reject) => {
+                console.log(reject.message)
+            })
+        }
+        testFn();
+    </script>
+</body>
+</html>
