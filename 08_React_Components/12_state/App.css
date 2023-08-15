@@ -1,0 +1,15 @@
+.app
+{
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+    background-color: aqua;
+    text-align: center;
+
+}
+
+.app button{
+    width: 100;
+    font-size: 50px;
+    margin: 0 20px;
+}
